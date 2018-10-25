@@ -1,0 +1,30 @@
+<h1>GROUPS!</h1>
+
+<h2>Register Here</h2>
+
+<form action="/sessions/create" method="post">
+	<input type="hidden" name="authenticity_token"<%= form_authenticity_token %>">
+	<p><input type="text" name="user[first]" placeholder="First Name"></p>
+
+	<p><input type="text" name="user[last]" placeholder="Last Name"></p>
+
+	<p><input type="text" name="user[email]" placeholder="Email"></p>
+
+	<p><input type="password" name="user[password]"
+	placeholder="Password"></p>
+
+	<input type="submit" value="Register">
+</form>
+
+<h2>Log In Here</h2>
+
+<form action="/sessions/login" method="post">
+	<input type="hidden" name="authenticity_token" value="<%=form_authenticity_token %>">
+
+<p><input type="text" name="user[email]" placeholder="Email"></p>
+
+<p><input type="password" name="user[password]" placeholder="Password"></p>
+
+<input type="submit" value="Log In">
+</form>
+

@@ -1,0 +1,47 @@
+<h1>Group Name: <%= @group.name %> </h1>
+
+<div class="creategroup">
+
+	<p>Description: <%= @group.description %></p>
+
+	<% if current_user.id != @group.user.id %>
+		<p>Created by: <%= @group.user.first %> <%= @group.user.last %></p>
+	<% else %>
+		<p>Created by: YOU </p>
+		<form action="/groups/destroy/<%= @group.id %>" method="post">
+			<input type="hidden" name="authenticity_token" 
+				value="<%=form_authenticity_token %>">
+
+			<input type="hidden" name="_method" value="delete">
+
+			<input type="submit" value="Delete Group">
+		</form>	
+
+	<% end %>
+
+
+	<% if @signup == nil %>
+		<form action="/groups/join/<%= @group.id %>" method="post">
+			<input type="hidden" name="authenticity_token" value="<%=form_authenticity_token %>">
+
+			<input type="submit" value="Join Group">
+		</form>		
+	<% else %>
+		<form action="/groups/leave/<%= @group.id %>" method="post">
+			<input type="hidden" name="authenticity_token" value="<%=form_authenticity_token %>">
+
+			 <input type="hidden" name="_method" value="delete">
+
+			<input type="submit" value="Leave Group">
+		</form>
+	<% end %>
+
+</div>
+
+<div class= "creategroup">
+	<h3>Members:</h3>
+
+	<% @members.each do |member| %>
+		<p>Member Name: <%= member.user.first %> <%= member.user.last %></p>
+	<% end %>
+</div>
